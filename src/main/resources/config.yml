@@ -1,0 +1,46 @@
+customItems:
+  neutral_fragment:
+    name: "&7Neutral Fragment"
+  solar_fragment:
+    name: "&6Solar Fragment"
+  tp_stick:
+    name: "&k&l&f!:! &5&lTeleportation &d&lGun &k&l&f!:!"
+    lore:
+      - "§8Clic Droit au sol pour placer votre Base de TP"
+      - "§8Ensuite, Faite a nouveau Clic droit avec pour"
+      - "§8Vous y Re-TP sous 2 Minutes Maximum."
+      - " "
+      - "§e> Utilisations Restantes : 20/20"
+  hydrus:
+    pickaxe:
+      name: "&a&l✪ &2&l&nPioche D'Hydrus&a&l ✪"
+      lore:
+        - "§1§l➢ Pioche Evolutive."
+        - "§1§l(2% Par Niveaux)"
+        - " "
+        - "§1§lNiveau : 0 / 50"
+        - "§1§lDouble Drop : 0%"
+    shovel:
+      name: "&a&l✪ &2&l&nPelle D'Hydrus&a&l ✪"
+      lore:
+        - "§1§l➢ Pelle Evolutive."
+        - "§1§l(2% Par Niveaux)"
+        - " "
+        - "§1§lNiveau : 0 / 50"
+        - "§1§lDouble Drop : 0%"
+    axe:
+      name: "&a&l✪ &2&l&nHache D'Hydrus&a&l ✪"
+      lore:
+        - "§1§l➢ Hache Evolutive."
+        - "§1§l(2% Par Niveaux)"
+        - " "
+        - "§1§lNiveau : 0 / 50"
+        - "§1§lDouble Drop : 0%"
+    hoe:
+      name: "&a&l✪ &2&l&nHoue D'Hydrus&a&l ✪"
+      lore:
+        - "§1§l➢ Houe Evolutive."
+        - "§1§l(2% Par Niveaux)"
+        - " "
+        - "§1§lNiveau : 0 / 50"
+        - "§1§lDouble Drop : 0%"

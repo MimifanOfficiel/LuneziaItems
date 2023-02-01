@@ -1,0 +1,11 @@
+name: LuneziaItems
+version: '${project.version}'
+main: fr.mimifan.luneziaitems.Main
+api-version: 1.18
+prefix: [ LuneziaItems ]
+authors: [ Mimifan ]
+description: Lunezia plugin for Items
+website: https://lilabrandon.tk
+commands:
+  lItems:
+    description: "Items customs Lunezia"
