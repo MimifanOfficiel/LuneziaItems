@@ -1,4 +1,5 @@
 customItems:
+  cant-here: "&7Cet item n'est pas autorisé ici."
   neutral_fragment:
     name: "&7Neutral Fragment"
   solar_fragment:
@@ -11,6 +12,19 @@ customItems:
       - "§8Vous y Re-TP sous 2 Minutes Maximum."
       - " "
       - "§e> Utilisations Restantes : 20/20"
+  loupe:
+    name: "&k&l&f!:! &5&lLoupe &k&l&f!:!"
+    lore:
+      - "§8Clic Droit sur un coffre pour l'ouvrir discrètement."
+      - "§8Vous ne pouvez que visionner le contenu."
+      - "§8Ne fonctionne que dans les claims non alliés."
+      - " "
+      - "§e> Utilisations Restantes : 20/20"
+    cooldown: 120 #Seconds
+    point-placed: "&7Balise placée ! Cliquez à nouveau pour vous téléporter à cet emplacement."
+    point-removed: "&72 minutes sont passées. Votre balise de téléportation s'est effacé."
+    wait-before-moving: "&7Vous devez encore attendre %time% secondes avant de modifier l'emplacement de la balise."
+    no-point: "&7Aucune balise de téléportation."
   hydrus:
     pickaxe:
       name: "&a&l✪ &2&l&nPioche D'Hydrus&a&l ✪"

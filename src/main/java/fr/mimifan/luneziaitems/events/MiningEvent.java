@@ -2,7 +2,9 @@ package fr.mimifan.luneziaitems.events;
 
 import fr.mimifan.luneziaitems.Main;
 import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusAxeMined;
+import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusHoeMined;
 import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusPickaxeMined;
+import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusShovelMined;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusAxe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusHoe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusPickaxe;
@@ -26,9 +28,9 @@ public class MiningEvent implements Listener {
         } else if(ItemCompare.equals(tool, HydrusAxe.item())){
             HydrusAxeMined.execute(event.getBlock());
         } else if(ItemCompare.equals(tool, HydrusShovel.item())){
-
+            HydrusShovelMined.execute(event.getBlock());
         } else if(ItemCompare.equals(tool, HydrusHoe.item())){
-
+            HydrusHoeMined.execute(event.getBlock());
         }
     }
 
