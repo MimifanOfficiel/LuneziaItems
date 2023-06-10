@@ -1,10 +1,10 @@
-package fr.mimifan.luneziaitems.events;
+package fr.mimifan.luneziaitems.listeners;
 
 import fr.mimifan.luneziaitems.Main;
-import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusAxeMined;
-import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusHoeMined;
-import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusPickaxeMined;
-import fr.mimifan.luneziaitems.events.mine.hydrus.HydrusShovelMined;
+import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusAxeMined;
+import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusHoeMined;
+import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusPickaxeMined;
+import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusShovelMined;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusAxe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusHoe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusPickaxe;
@@ -17,7 +17,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 
-public class MiningEvent implements Listener {
+public class MiningListener implements Listener {
     @EventHandler
     public void onBreak(BlockBreakEvent event){
         if(!event.getBlock().getMetadata("placedByPlayer").isEmpty()){ event.getBlock().removeMetadata("placedByPlayer", Main.getInstance()); return;}

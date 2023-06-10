@@ -1,4 +1,4 @@
-package fr.mimifan.luneziaitems.events.interact;
+package fr.mimifan.luneziaitems.listeners.interact;
 
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;

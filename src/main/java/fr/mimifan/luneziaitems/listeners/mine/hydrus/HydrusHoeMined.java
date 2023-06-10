@@ -1,6 +1,6 @@
-package fr.mimifan.luneziaitems.events.mine.hydrus;
+package fr.mimifan.luneziaitems.listeners.mine.hydrus;
 
-import fr.mimifan.luneziaitems.events.MiningEvent;
+import fr.mimifan.luneziaitems.listeners.MiningListener;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +13,7 @@ public class HydrusHoeMined {
             case CROPS, POTATO, CARROT, WHEAT, BROWN_MUSHROOM, RED_MUSHROOM -> {
                 if (block.getData() == (byte) 7) {
                     for (ItemStack item : block.getDrops()) {
-                        MiningEvent.dropLoot(loc, item);
+                        MiningListener.dropLoot(loc, item);
                     }
                 }
             }
