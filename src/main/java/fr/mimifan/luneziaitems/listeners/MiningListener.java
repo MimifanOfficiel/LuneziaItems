@@ -48,5 +48,4 @@ public class MiningListener implements Listener {
     public static void dropLoot(Location loc, ItemStack drop) {
         loc.getWorld().dropItemNaturally(loc, drop);
     }
-
 }

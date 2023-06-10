@@ -10,7 +10,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class InteractListener implements Listener {
-
     @EventHandler
     public void onInteract(PlayerInteractEvent event){
         if(ItemCompare.equals(event.getPlayer().getItemInHand(), TeleportationStick.item())){
@@ -19,11 +18,5 @@ public class InteractListener implements Listener {
             LoupeListener.use(event);
         }
     }
-
-
-
-
-
-
 
 }
