@@ -1,14 +1,10 @@
 package fr.mimifan.luneziaitems.listeners;
 
 import fr.mimifan.luneziaitems.Main;
-import fr.mimifan.luneziaitems.events.HydrusAxeMineEvent;
-import fr.mimifan.luneziaitems.events.HydrusHoeMineEvent;
-import fr.mimifan.luneziaitems.events.HydrusPickaxeMineEvent;
-import fr.mimifan.luneziaitems.events.HydrusShovelMineEvent;
-import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusAxeMined;
-import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusHoeMined;
-import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusPickaxeMined;
-import fr.mimifan.luneziaitems.listeners.mine.hydrus.HydrusShovelMined;
+import fr.mimifan.luneziaitems.events.HydrusAxeBlockBreakEvent;
+import fr.mimifan.luneziaitems.events.HydrusHoeBlockBreakEvent;
+import fr.mimifan.luneziaitems.events.HydrusPickaxeBlockBreakEvent;
+import fr.mimifan.luneziaitems.events.HydrusShovelBlockBreakEvent;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusAxe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusHoe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusPickaxe;
@@ -35,13 +31,13 @@ public class MiningListener implements Listener {
         ItemStack tool = event.getPlayer().getItemInHand();
 
         if(ItemCompare.equals(tool, HydrusPickaxe.item())){
-            Bukkit.getPluginManager().callEvent(new HydrusPickaxeMineEvent(event.getBlock(), event.getPlayer()));
+            Bukkit.getPluginManager().callEvent(new HydrusPickaxeBlockBreakEvent(event.getBlock(), event.getPlayer()));
         } else if(ItemCompare.equals(tool, HydrusAxe.item())){
-            Bukkit.getPluginManager().callEvent(new HydrusAxeMineEvent(event.getBlock(), event.getPlayer()));
+            Bukkit.getPluginManager().callEvent(new HydrusAxeBlockBreakEvent(event.getBlock(), event.getPlayer()));
         } else if(ItemCompare.equals(tool, HydrusShovel.item())){
-            Bukkit.getPluginManager().callEvent(new HydrusShovelMineEvent(event.getBlock(), event.getPlayer()));
+            Bukkit.getPluginManager().callEvent(new HydrusShovelBlockBreakEvent(event.getBlock(), event.getPlayer()));
         } else if(ItemCompare.equals(tool, HydrusHoe.item())){
-            Bukkit.getPluginManager().callEvent(new HydrusHoeMineEvent(event.getBlock(), event.getPlayer()));
+            Bukkit.getPluginManager().callEvent(new HydrusHoeBlockBreakEvent(event.getBlock(), event.getPlayer()));
         }
     }
 

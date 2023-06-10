@@ -4,8 +4,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 
-public class HydrusHoeMineEvent extends BlockBreakEvent {
-    public HydrusHoeMineEvent(Block block, Player player) {
+public class HydrusAxeBlockBreakEvent extends BlockBreakEvent {
+    public HydrusAxeBlockBreakEvent(Block block, Player player) {
         super(block, player);
     }
 }
