@@ -1,4 +1,4 @@
-package fr.mimifan.luneziaitems.events.interact;
+package fr.mimifan.luneziaitems.listeners.interact;
 
 import com.massivecraft.factions.Board;
 import com.massivecraft.factions.FLocation;
@@ -12,7 +12,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 
-public class LoupeEvent {
+public class LoupeListener {
 
     public static void use(PlayerInteractEvent event){
         event.setCancelled(true);
