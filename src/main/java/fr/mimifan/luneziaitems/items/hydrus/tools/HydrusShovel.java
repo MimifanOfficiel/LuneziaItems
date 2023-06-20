@@ -1,8 +1,10 @@
 package fr.mimifan.luneziaitems.items.hydrus.tools;
 
 import fr.mimifan.luneziaitems.Main;
+import fr.mimifan.luneziaitems.utils.CustomStrings;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 public class HydrusShovel {
@@ -16,7 +18,9 @@ public class HydrusShovel {
         meta.addEnchant(Enchantment.DURABILITY, 4, true);
         meta.addEnchant(Enchantment.DIG_SPEED, 6, true);
 
-        meta.setLore(Main.getInstance().getConfig().getStringList("customItems.hydrus.shovel.lore"));
+        meta.setLore(CustomStrings.replaceStringList("customItems.hydrus.shovel.lore"));
+        if(Main.getInstance().getConfig().getBoolean("customItems.hydrus.shovel.hide-enchants")) meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
 
         item.setItemMeta(meta);
         item.setAmount(quantity);

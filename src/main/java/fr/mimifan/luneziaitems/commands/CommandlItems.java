@@ -6,6 +6,7 @@ import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusAxe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusHoe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusPickaxe;
 import fr.mimifan.luneziaitems.items.hydrus.tools.HydrusShovel;
+import fr.mimifan.luneziaitems.items.misc.Loupe;
 import fr.mimifan.luneziaitems.items.misc.TeleportationStick;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -54,6 +55,9 @@ public class CommandlItems implements CommandExecutor {
                 break;
             case "solar_fragment":
                 player.getInventory().addItem(SolarFragment.item(quantity));
+                break;
+            case "loupe":
+                player.getInventory().addItem(Loupe.item());
                 break;
         }
     }

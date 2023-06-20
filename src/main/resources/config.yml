@@ -6,55 +6,61 @@ customItems:
     name: "&6Solar Fragment"
   tp_stick:
     name: "&k&l&f!:! &5&lTeleportation &d&lGun &k&l&f!:!"
+    hide-enchants: true
     lore:
-      - "§8Clic Droit au sol pour placer votre Base de TP"
-      - "§8Ensuite, Faite a nouveau Clic droit avec pour"
-      - "§8Vous y Re-TP sous 2 Minutes Maximum."
+      - "&8Clic Droit au sol pour placer votre Base de TP"
+      - "&8Ensuite, Faite a nouveau Clic droit avec pour"
+      - "&8Vous y Re-TP sous 2 Minutes Maximum."
       - " "
-      - "§e> Utilisations Restantes : 20/20"
-  loupe:
-    name: "&k&l&f!:! &5&lLoupe &k&l&f!:!"
-    lore:
-      - "§8Clic Droit sur un coffre pour l'ouvrir discrètement."
-      - "§8Vous ne pouvez que visionner le contenu."
-      - "§8Ne fonctionne que dans les claims non alliés."
-      - " "
-      - "§e> Utilisations Restantes : 20/20"
+      - "&e> Utilisations Restantes : 20/20"
     cooldown: 120 #Seconds
     point-placed: "&7Balise placée ! Cliquez à nouveau pour vous téléporter à cet emplacement."
     point-removed: "&72 minutes sont passées. Votre balise de téléportation s'est effacé."
     wait-before-moving: "&7Vous devez encore attendre %time% secondes avant de modifier l'emplacement de la balise."
     no-point: "&7Aucune balise de téléportation."
+  loupe:
+    name: "&k&l&f!:! &5&lLoupe &k&l&f!:!"
+    hide-enchants: true
+    lore:
+      - "&8Clic Droit sur un coffre pour l'ouvrir discrètement."
+      - "&8Vous ne pouvez que visionner le contenu."
+      - "&8Ne fonctionne que dans les claims non alliés."
+      - " "
+      - "&e> Utilisations Restantes : 20/20"
   hydrus:
     pickaxe:
       name: "&a&l✪ &2&l&nPioche D'Hydrus&a&l ✪"
+      hide-enchants: true
       lore:
-        - "§1§l➢ Pioche Evolutive."
-        - "§1§l(2% Par Niveaux)"
+        - "&1&l➢ Pioche Evolutive."
+        - "&1&l(2% Par Niveaux)"
         - " "
-        - "§1§lNiveau : 0 / 50"
-        - "§1§lDouble Drop : 0%"
+        - "&1&lNiveau : 0 / 50"
+        - "&1&lDouble Drop : 0%"
     shovel:
       name: "&a&l✪ &2&l&nPelle D'Hydrus&a&l ✪"
+      hide-enchants: true
       lore:
-        - "§1§l➢ Pelle Evolutive."
-        - "§1§l(2% Par Niveaux)"
+        - "&1&l➢ Pelle Evolutive."
+        - "&1&l(2% Par Niveaux)"
         - " "
-        - "§1§lNiveau : 0 / 50"
-        - "§1§lDouble Drop : 0%"
+        - "&1&lNiveau : 0 / 50"
+        - "&1&lDouble Drop : 0%"
     axe:
       name: "&a&l✪ &2&l&nHache D'Hydrus&a&l ✪"
+      hide-enchants: true
       lore:
-        - "§1§l➢ Hache Evolutive."
-        - "§1§l(2% Par Niveaux)"
+        - "&1&l➢ Hache Evolutive."
+        - "&1&l(2% Par Niveaux)"
         - " "
-        - "§1§lNiveau : 0 / 50"
-        - "§1§lDouble Drop : 0%"
+        - "&1&lNiveau : 0 / 50"
+        - "&1&lDouble Drop : 0%"
     hoe:
       name: "&a&l✪ &2&l&nHoue D'Hydrus&a&l ✪"
+      hide-enchants: true
       lore:
-        - "§1§l➢ Houe Evolutive."
-        - "§1§l(2% Par Niveaux)"
+        - "&1&l➢ Houe Evolutive."
+        - "&1&l(2% Par Niveaux)"
         - " "
-        - "§1§lNiveau : 0 / 50"
-        - "§1§lDouble Drop : 0%"
+        - "&1&lNiveau : 0 / 50"
+        - "&1&lDouble Drop : 0%"

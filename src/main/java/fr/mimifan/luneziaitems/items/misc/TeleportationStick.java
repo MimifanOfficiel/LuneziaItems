@@ -1,6 +1,7 @@
 package fr.mimifan.luneziaitems.items.misc;
 
 import fr.mimifan.luneziaitems.Main;
+import fr.mimifan.luneziaitems.utils.CustomStrings;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -22,7 +23,8 @@ public class TeleportationStick {
         ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(Main.getInstance().getConfig().getString("customItems.tp_stick.name").replace("&","§"));
-        meta.setLore(Main.getInstance().getConfig().getStringList("customItems.tp_stick.lore"));
+        meta.setLore(CustomStrings.replaceStringList("customItems.tp_stick.lore"));
+        if(Main.getInstance().getConfig().getBoolean("customItems.tp_stick.hide-enchants")) meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         meta.addEnchant(Enchantment.DURABILITY, 1, true);
         meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 

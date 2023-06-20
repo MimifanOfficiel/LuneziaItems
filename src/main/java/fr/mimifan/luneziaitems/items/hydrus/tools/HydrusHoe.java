@@ -1,8 +1,10 @@
 package fr.mimifan.luneziaitems.items.hydrus.tools;
 
 import fr.mimifan.luneziaitems.Main;
+import fr.mimifan.luneziaitems.utils.CustomStrings;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -17,7 +19,8 @@ public class HydrusHoe {
         meta.addEnchant(Enchantment.DURABILITY, 3, false);
         meta.addEnchant(Enchantment.DIG_SPEED, 5, true);
 
-        meta.setLore(Main.getInstance().getConfig().getStringList("customItems.hydrus.hoe.lore"));
+        meta.setLore(CustomStrings.replaceStringList("customItems.hydrus.hoe.lore"));
+        if(Main.getInstance().getConfig().getBoolean("customItems.hydrus.hoe.hide-enchants")) meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         item.setItemMeta(meta);
         item.setAmount(quantity);
