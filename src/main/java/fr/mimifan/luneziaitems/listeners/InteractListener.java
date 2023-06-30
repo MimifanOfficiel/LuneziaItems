@@ -14,7 +14,7 @@ public class InteractListener implements Listener {
     public void onInteract(PlayerInteractEvent event){
         if(ItemCompare.equals(event.getPlayer().getItemInHand(), TeleportationStick.item())){
             TeleportationStickEvent.use(event);
-        } else if(ItemCompare.equals(event.getPlayer().getItemInHand(), Loupe.item())){
+        } else if(ItemCompare.equals(event.getPlayer().getItemInHand(), new Loupe().getItemStack())){
             LoupeListener.use(event);
         }
     }

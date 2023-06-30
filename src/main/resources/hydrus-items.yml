@@ -1,0 +1,59 @@
+hydrus-pickaxe:
+  item: DIAMOND_PICKAXE
+  name: "&a&l✪ &2&l&nPioche D'Hydrus&a&l ✪"
+  hide-enchants: true
+  lore:
+    - "&1&l➢ Pioche Evolutive."
+    - "&1&l(2% Par Niveaux)"
+    - " "
+    - "&1&lNiveau : 0 / 50"
+    - "&1&lDouble Drop : 0%"
+  enchants:
+    SILK_TOUCH: 1
+    DURABILITY: 3
+    DIG_SPEED: 6
+
+hydrus-shovel:
+  item: DIAMOND_SPADE
+  name: "&a&l✪ &2&l&nPelle D'Hydrus&a&l ✪"
+  hide-enchants: true
+  lore:
+    - "&1&l➢ Pelle Evolutive."
+    - "&1&l(2% Par Niveaux)"
+    - " "
+    - "&1&lNiveau : 0 / 50"
+    - "&1&lDouble Drop : 0%"
+  enchants:
+    SILK_TOUCH: 1
+    DURABILITY: 4
+    DIG_SPEED: 6
+
+hydrus-axe:
+  item: DIAMOND_AXE
+  name: "&a&l✪ &2&l&nHache D'Hydrus&a&l ✪"
+  hide-enchants: true
+  lore:
+    - "&1&l➢ Hache Evolutive."
+    - "&1&l(2% Par Niveaux)"
+    - " "
+    - "&1&lNiveau : 0 / 50"
+    - "&1&lDouble Drop : 0%"
+  enchants:
+    SILK_TOUCH: 1
+    DURABILITY: 3
+    DIG_SPEED: 7
+
+hydrus-hoe:
+  item: DIAMOND_HOE
+  name: "&a&l✪ &2&l&nHoue D'Hydrus&a&l ✪"
+  hide-enchants: true
+  lore:
+    - "&1&l➢ Houe Evolutive."
+    - "&1&l(2% Par Niveaux)"
+    - " "
+    - "&1&lNiveau : 0 / 50"
+    - "&1&lDouble Drop : 0%"
+  enchants:
+    LOOT_BONUS_BLOCKS: 4
+    DURABILITY: 3
+    DIG_SPEED: 5

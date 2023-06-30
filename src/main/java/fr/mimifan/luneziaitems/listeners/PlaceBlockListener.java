@@ -9,6 +9,6 @@ import org.bukkit.metadata.FixedMetadataValue;
 public class PlaceBlockListener implements Listener {
     @EventHandler
     public void onPlace(BlockPlaceEvent event){
-        event.getBlockPlaced().setMetadata("placedByPlayer", new FixedMetadataValue(Main.getInstance(), true));
+        event.getBlockPlaced().setMetadata("placed-by-player", new FixedMetadataValue(Main.getInstance(), true));
     }
 }

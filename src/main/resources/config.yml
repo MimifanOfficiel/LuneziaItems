@@ -1,8 +1,11 @@
-customItems:
+item-name-not-found: "&cNom introuvable - Vérifier le chemin"
+
+
+custom-items:
   cant-here: "&7Cet item n'est pas autorisé ici."
-  neutral_fragment:
+  neutral-fragment:
     name: "&7Neutral Fragment"
-  solar_fragment:
+  solar-fragment:
     name: "&6Solar Fragment"
   tp_stick:
     name: "&k&l&f!:! &5&lTeleportation &d&lGun &k&l&f!:!"
@@ -27,40 +30,3 @@ customItems:
       - "&8Ne fonctionne que dans les claims non alliés."
       - " "
       - "&e> Utilisations Restantes : 20/20"
-  hydrus:
-    pickaxe:
-      name: "&a&l✪ &2&l&nPioche D'Hydrus&a&l ✪"
-      hide-enchants: true
-      lore:
-        - "&1&l➢ Pioche Evolutive."
-        - "&1&l(2% Par Niveaux)"
-        - " "
-        - "&1&lNiveau : 0 / 50"
-        - "&1&lDouble Drop : 0%"
-    shovel:
-      name: "&a&l✪ &2&l&nPelle D'Hydrus&a&l ✪"
-      hide-enchants: true
-      lore:
-        - "&1&l➢ Pelle Evolutive."
-        - "&1&l(2% Par Niveaux)"
-        - " "
-        - "&1&lNiveau : 0 / 50"
-        - "&1&lDouble Drop : 0%"
-    axe:
-      name: "&a&l✪ &2&l&nHache D'Hydrus&a&l ✪"
-      hide-enchants: true
-      lore:
-        - "&1&l➢ Hache Evolutive."
-        - "&1&l(2% Par Niveaux)"
-        - " "
-        - "&1&lNiveau : 0 / 50"
-        - "&1&lDouble Drop : 0%"
-    hoe:
-      name: "&a&l✪ &2&l&nHoue D'Hydrus&a&l ✪"
-      hide-enchants: true
-      lore:
-        - "&1&l➢ Houe Evolutive."
-        - "&1&l(2% Par Niveaux)"
-        - " "
-        - "&1&lNiveau : 0 / 50"
-        - "&1&lDouble Drop : 0%"

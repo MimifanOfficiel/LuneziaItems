@@ -1,6 +1,7 @@
 package fr.mimifan.luneziaitems.items.misc;
 
 import fr.mimifan.luneziaitems.Main;
+import fr.mimifan.luneziaitems.api.items.LuneziaItem;
 import fr.mimifan.luneziaitems.utils.CustomStrings;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -9,10 +10,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
-public class TeleportationStick {
+public class TeleportationStick implements LuneziaItem {
 
     private static HashMap<Player, Location> tp_point = new HashMap<Player, Location>();
     private static HashMap<Player, Long> cooldown = new HashMap<Player, Long>();
@@ -42,5 +44,15 @@ public class TeleportationStick {
     }
     public static HashMap<Player, Long> getCooldown() {
         return cooldown;
+    }
+
+    @Override
+    public ItemStack getItemStack() {
+        return null;
+    }
+
+    @Override
+    public @Nullable String getTag() {
+        return "teleportation-stick";
     }
 }

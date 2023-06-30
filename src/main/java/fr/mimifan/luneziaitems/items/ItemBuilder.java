@@ -1,164 +1,118 @@
 package fr.mimifan.luneziaitems.items;
 
-import org.bukkit.Color;
-import org.bukkit.DyeColor;
+import fr.mimifan.luneziaitems.managers.ItemManager;
+import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class ItemBuilder {
 
-    private ItemStack item;
+    private Material material = Material.AIR;
 
-    public ItemBuilder(Material m){
-        this(m, 1);
+    private String name;
+    private String skullOwner;
+    private String tag;
+    private List<String> lore = new ArrayList<>();
+    private List<Enchantment> enchantments = new ArrayList<>();
+    private List<Integer> enchantmentsLevels = new ArrayList<>();
+    private Integer durability = 0, quantity = 1;
+    private Byte dataValue = 0;
+    private boolean hideEnchants = false;
+
+    public ItemBuilder(String tag){
+        this.tag = tag;
     }
 
-    public ItemBuilder(ItemStack item) {
-        this.item = item;
-    }
-
-    public ItemBuilder(Material m, int quantity) {
-        item= new ItemStack(m, quantity);
-    }
-
-    public ItemBuilder clone(){
-        return new ItemBuilder(item);
-    }
-
-    public ItemBuilder setDurability(short dur) {
-        item.setDurability(dur);
+    public ItemBuilder setMaterial(Material material){
+        this.material = material;
         return this;
     }
 
-    public ItemBuilder setName(String name){
-        ItemMeta im = item.getItemMeta();
-        im.setDisplayName(name);
-        item.setItemMeta(im);
+    public ItemBuilder setName(String name) {
+        this.name = name;
         return this;
     }
 
-    public ItemBuilder addUnsafeEnchantment(Enchantment ench, int level){
-        item.addUnsafeEnchantment(ench, level);
+    public ItemBuilder setSkullOwner(String skullOwner) {
+        this.skullOwner = skullOwner;
         return this;
     }
 
-    public ItemBuilder removeEnchantment(Enchantment ench){
-        item.removeEnchantment(ench);
+    public ItemBuilder setLore(@NotNull List<String> lore) {
+        this.lore = lore;
         return this;
     }
 
-    public ItemBuilder setSkullOwner(String owner){
-        try{
-            SkullMeta im = (SkullMeta)item.getItemMeta();
-            im.setOwner(owner);
-            item.setItemMeta(im);
-        }catch(ClassCastException expected){}
+    public ItemBuilder setEnchantments(@NotNull List<Enchantment> enchantments) {
+        this.enchantments = enchantments;
         return this;
     }
 
-    public ItemBuilder addEnchant(Enchantment ench, int level){
-        ItemMeta im = item.getItemMeta();
-        im.addEnchant(ench, level, true);
-        item.setItemMeta(im);
+    public ItemBuilder addEnchantment(@NotNull Enchantment enchantment, int level){
+        enchantments.add(enchantment);
+        enchantmentsLevels.add(level);
         return this;
     }
 
-    public ItemBuilder addEnchantments(Map<Enchantment, Integer> enchantments){
-        item.addEnchantments(enchantments);
+    public ItemBuilder setDurability(Integer durability) {
+        this.durability = durability;
         return this;
     }
 
-    public ItemBuilder setInfinityDurability(){
-        item.setDurability(Short.MAX_VALUE);
+    public ItemBuilder setQuantity(Integer quantity) {
+        this.quantity = quantity;
         return this;
     }
 
-    public ItemBuilder setLore(String... lore){
-        ItemMeta im = item.getItemMeta();
-        im.setLore(Arrays.asList(lore));
-        item.setItemMeta(im);
+    public ItemBuilder setDataValue(Byte dataValue) {
+        this.dataValue = dataValue;
         return this;
     }
 
-    public ItemBuilder setLore(List<String> lore) {
-        ItemMeta im = item.getItemMeta();
-        im.setLore(lore);
-        item.setItemMeta(im);
+    public ItemBuilder setHideEnchants(boolean hideEnchants) {
+        this.hideEnchants = hideEnchants;
         return this;
     }
 
-    public ItemBuilder removeLoreLine(String line){
-        ItemMeta im = item.getItemMeta();
-        List<String> lore = new ArrayList<>(im.getLore());
-        if(!lore.contains(line))return this;
-        lore.remove(line);
-        im.setLore(lore);
-        item.setItemMeta(im);
-        return this;
+
+    public ItemStack build(){
+        ItemStack itemStack = new ItemStack(material, ((quantity == null) ? 1 : quantity), dataValue);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        if(itemMeta != null){
+            if (itemMeta instanceof SkullMeta) { ((SkullMeta) itemMeta).setOwner(this.skullOwner); }
+
+            itemMeta.setDisplayName(name);
+            itemMeta.setLore(lore);
+            if(hideEnchants) itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+
+            itemStack.setItemMeta(itemMeta);
+
+            for (int i = 0; i < enchantments.size(); i++) {
+                itemStack.addUnsafeEnchantment(enchantments.get(i), enchantmentsLevels.get(i));
+            }
+
+            net.minecraft.server.v1_8_R3.ItemStack nmsItem = CraftItemStack.asNMSCopy(itemStack);
+
+            NBTTagCompound nbtTagCompound = nmsItem.getTag();
+            if (nbtTagCompound == null) { nbtTagCompound = new NBTTagCompound(); }
+
+            nbtTagCompound.setString(ItemManager.LUNEZIA_TAG, tag);
+
+            nmsItem.setTag(nbtTagCompound);
+
+            itemStack = CraftItemStack.asBukkitCopy(nmsItem);
+        }
+        return itemStack;
     }
 
-    public ItemBuilder removeLoreLine(int index){
-        ItemMeta im = item.getItemMeta();
-        List<String> lore = new ArrayList<>(im.getLore());
-        if(index<0||index>lore.size())return this;
-        lore.remove(index);
-        im.setLore(lore);
-        item.setItemMeta(im);
-        return this;
-    }
-
-    public ItemBuilder addLoreLine(String line){
-        ItemMeta im = item.getItemMeta();
-        List<String> lore = new ArrayList<>();
-        if(im.hasLore())lore = new ArrayList<>(im.getLore());
-        lore.add(line);
-        im.setLore(lore);
-        item.setItemMeta(im);
-        return this;
-    }
-
-    public ItemBuilder addLoreLine(String line, int pos){
-        ItemMeta im = item.getItemMeta();
-        List<String> lore = new ArrayList<>(im.getLore());
-        lore.set(pos, line);
-        im.setLore(lore);
-        item.setItemMeta(im);
-        return this;
-    }
-
-    @SuppressWarnings("deprecation")
-    public ItemBuilder setDyeColor(DyeColor color){
-        this.item.setDurability(color.getData());
-        return this;
-    }
-
-    @Deprecated
-    public ItemBuilder setWoolColor(DyeColor color){
-        if(!item.getType().equals(Material.WOOL))return this;
-        this.item.setDurability(color.getData());
-        return this;
-    }
-
-    public ItemBuilder setLeatherArmorColor(Color color){
-        try{
-            LeatherArmorMeta im = (LeatherArmorMeta)item.getItemMeta();
-            im.setColor(color);
-            item.setItemMeta(im);
-        }catch(ClassCastException expected){}
-        return this;
-    }
-
-    public ItemStack toItemStack(){
-        return item;
-    }
 
 }

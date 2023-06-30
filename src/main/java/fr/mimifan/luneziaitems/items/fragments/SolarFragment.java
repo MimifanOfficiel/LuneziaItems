@@ -1,25 +1,35 @@
 package fr.mimifan.luneziaitems.items.fragments;
 
 import fr.mimifan.luneziaitems.Main;
+import fr.mimifan.luneziaitems.api.configuration.ConfigurationFile;
+import fr.mimifan.luneziaitems.api.items.Craftable;
+import fr.mimifan.luneziaitems.api.items.LuneziaItem;
+import fr.mimifan.luneziaitems.items.ItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.Nullable;
 
-public class SolarFragment {
+public class SolarFragment implements LuneziaItem {
 
-    public static ItemStack item(final int quantity){
-        ItemStack item = new ItemStack(Material.INK_SACK);
-        item.setDurability((short)14);
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(Main.getInstance().getConfig().getString("customItems.solar_fragment.name").replace("&","§"));
+    private ItemStack itemStack;
 
-        item.setItemMeta(meta);
-        item.setAmount(quantity);
-        return item;
+    public SolarFragment() {
+        ConfigurationFile configurationFile = ConfigurationFile.getInstance();
+        itemStack = new ItemBuilder(getTag())
+                .setName(configurationFile.getMessage("custom-items." + getTag() + ".name"))
+                .setMaterial(Material.INK_SACK)
+                .setDataValue((byte)14)
+                .build();
     }
 
-    public static ItemStack item(){
-        return item(1);
+    @Override
+    public ItemStack getItemStack() {
+        return this.itemStack;
     }
 
+    @Override
+    public @Nullable String getTag() {
+        return "solar-fragment";
+    }
 }
