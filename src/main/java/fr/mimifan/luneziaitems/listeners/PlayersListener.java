@@ -2,17 +2,18 @@ package fr.mimifan.luneziaitems.listeners;
 
 import fr.mimifan.luneziaitems.Main;
 import fr.mimifan.luneziaitems.api.items.*;
+import fr.mimifan.luneziaitems.blocks.StorageManager;
 import fr.mimifan.luneziaitems.managers.ItemManager;
 import fr.mimifan.luneziaitems.managers.PlayerManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerItemBreakEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayersListener implements Listener {
@@ -59,6 +60,39 @@ public class PlayersListener implements Listener {
                 PlayerManager.getInstance().unregister(event.getPlayer());
             }
         });
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent e) {
+        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;
+
+        ItemStack itemInHand = e.getItem();
+        LuneziaItem luneziaItem = ItemManager.getInstance().get(CraftItemStack.asNMSCopy(itemInHand));
+
+        if (luneziaItem == null) return;
+
+        if (luneziaItem instanceof Interactable) {
+            ((Interactable) luneziaItem).onInteract(e);
+            return;
+        }
+
+        System.out.println("Interact");
+
+        if (luneziaItem instanceof BlockItem blockItem) {
+            Location location = e.getClickedBlock().getLocation().add(e.getBlockFace().getModX(), e.getBlockFace().getModY(), e.getBlockFace().getModZ());
+
+            if (location.getBlock().getType() == Material.AIR) {
+                blockItem.onBlockPlace(e);
+
+                if (!e.isCancelled()) {
+                    e.setCancelled(true);
+                    location.getBlock().setType(blockItem.getBlockType());
+                    StorageManager.getInstance().register(location.getBlock(), blockItem.getTag());
+                    e.getPlayer().getInventory().removeItem(e.getItem());
+                    return;
+                }
+            }
+        }
     }
 
 }

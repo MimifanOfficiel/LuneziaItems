@@ -2,9 +2,6 @@ package fr.mimifan.luneziaitems.commands;
 
 import fr.mimifan.luneziaitems.Main;
 import fr.mimifan.luneziaitems.api.configuration.ConfigurationFile;
-import fr.mimifan.luneziaitems.api.configuration.YamlConfigurationFile;
-import fr.mimifan.luneziaitems.api.itemfiles.HydrusConfigurationFile;
-import fr.mimifan.luneziaitems.api.itemfiles.LunaireConfigurationFile;
 import fr.mimifan.luneziaitems.api.items.LuneziaItem;
 import fr.mimifan.luneziaitems.managers.ItemManager;
 import net.md_5.bungee.api.chat.*;

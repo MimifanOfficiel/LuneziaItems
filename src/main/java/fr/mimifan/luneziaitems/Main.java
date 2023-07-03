@@ -3,6 +3,7 @@ package fr.mimifan.luneziaitems;
 import fr.mimifan.luneziaitems.api.configuration.ConfigurationFile;
 import fr.mimifan.luneziaitems.api.itemfiles.HydrusConfigurationFile;
 import fr.mimifan.luneziaitems.api.itemfiles.LunaireConfigurationFile;
+import fr.mimifan.luneziaitems.blocks.TestBlock;
 import fr.mimifan.luneziaitems.commands.CommandLItems;
 import fr.mimifan.luneziaitems.items.fragments.NeutralFragment;
 import fr.mimifan.luneziaitems.items.fragments.SolarFragment;
@@ -64,7 +65,9 @@ public final class Main extends JavaPlugin {
                 new LunaireHelmet(),
                 new LunaireChestplate(),
                 new LunaireLeggings(),
-                new LunaireBoots()
+                new LunaireBoots(),
+
+                new TestBlock()
         ));
 
         ItemManager.getInstance().load();

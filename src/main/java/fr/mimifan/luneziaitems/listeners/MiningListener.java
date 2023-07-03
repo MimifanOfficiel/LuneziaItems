@@ -1,10 +1,13 @@
 package fr.mimifan.luneziaitems.listeners;
 
+import fr.mimifan.luneziaitems.api.items.BlockItem;
 import fr.mimifan.luneziaitems.api.items.LuneziaItem;
 import fr.mimifan.luneziaitems.api.items.Mining;
+import fr.mimifan.luneziaitems.blocks.StorageManager;
 import fr.mimifan.luneziaitems.managers.ItemManager;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,6 +29,20 @@ public class MiningListener implements Listener {
                 ((Mining) luneziaItem).onNaturalBlockBreak(event);
             }
             ((Mining) luneziaItem).onBlockBreak(event);
+        }
+
+        BlockItem blockItem = ItemManager.getInstance().get(event.getBlock());
+
+        if (blockItem != null) {
+            blockItem.onBlockBreak(event);
+
+            if (!event.isCancelled()) {
+                event.setCancelled(true);
+                Location location = event.getBlock().getLocation();
+                event.getBlock().setType(Material.AIR);
+                location.getWorld().dropItemNaturally(location, blockItem.getItemStack());
+                StorageManager.getInstance().unregister(event.getBlock(), blockItem.getTag());
+            }
         }
     }
 }

@@ -1,13 +1,16 @@
 package fr.mimifan.luneziaitems.managers;
 
 import fr.mimifan.luneziaitems.Main;
+import fr.mimifan.luneziaitems.api.items.BlockItem;
 import fr.mimifan.luneziaitems.api.items.Craftable;
 import fr.mimifan.luneziaitems.api.items.LuneziaItem;
+import fr.mimifan.luneziaitems.blocks.StorageManager;
 import fr.mimifan.luneziaitems.listeners.*;
 import net.minecraft.server.v1_8_R3.Item;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
+import org.bukkit.block.Block;
 import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +20,9 @@ import java.util.List;
 
 public class ItemManager {
 
-    public static final String LUNEZIA_TAG = "lunezia-item";
+    public static final String LUNEZIA_ITEM_TAG = "lunezia-item";
+
+    public static final String LUNEZIA_BLOCK_TAG = "lunezia-block";
 
     private static final ItemManager instance = new ItemManager();
 
@@ -82,7 +87,7 @@ public class ItemManager {
 
         if (base == null || base.isEmpty()) return null;
 
-        String name = base.getString(ItemManager.LUNEZIA_TAG);
+        String name = base.getString(ItemManager.LUNEZIA_ITEM_TAG);
 
         if (name == null || name.trim().isEmpty()) return null;
 
@@ -99,6 +104,18 @@ public class ItemManager {
     @Nullable
     public LuneziaItem get(String tag) {
         return this.luneziaItemList.stream().filter(item -> item.getTag().equals(tag)).findFirst().orElse(null);
+    }
+
+    public BlockItem get(Block block) {
+        for (LuneziaItem luneziaItem : this.luneziaItemList) {
+            if (luneziaItem instanceof BlockItem blockItem) {
+                if (StorageManager.getInstance().has(block, blockItem.getTag())) {
+                    return blockItem;
+                }
+            }
+        }
+
+        return null;
     }
 
     public static ItemManager getInstance() {
