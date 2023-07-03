@@ -66,8 +66,6 @@ public class PlayersListener implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e) {
-        if (!e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;
-
         ItemStack itemInHand = e.getItem();
         LuneziaItem luneziaItem = ItemManager.getInstance().get(CraftItemStack.asNMSCopy(itemInHand));
 
