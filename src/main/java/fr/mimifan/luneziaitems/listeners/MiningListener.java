@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
 public class MiningListener implements Listener {
 
     @EventHandler
-    public void onBreak(BlockBreakEvent event){
+    public void onBreak(BlockBreakEvent event) {
         Player player = event.getPlayer();
         ItemStack itemInHand = player.getItemInHand();
         LuneziaItem luneziaItem = ItemManager.getInstance().get(CraftItemStack.asNMSCopy(itemInHand));
@@ -40,7 +40,13 @@ public class MiningListener implements Listener {
                 event.setCancelled(true);
                 Location location = event.getBlock().getLocation();
                 event.getBlock().setType(Material.AIR);
-                location.getWorld().dropItemNaturally(location, blockItem.getItemStack());
+
+                if (!event.getPlayer().getGameMode().equals(GameMode.CREATIVE) && blockItem.getTools().contains(itemInHand)) {
+                    for (ItemStack drop : blockItem.getDrops()) {
+                        location.getWorld().dropItem(location, drop);
+                    }
+                }
+
                 StorageManager.getInstance().unregister(event.getBlock(), blockItem.getTag());
             }
         }

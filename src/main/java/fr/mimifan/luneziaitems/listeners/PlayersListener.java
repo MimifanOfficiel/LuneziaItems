@@ -6,9 +6,11 @@ import fr.mimifan.luneziaitems.blocks.StorageManager;
 import fr.mimifan.luneziaitems.managers.ItemManager;
 import fr.mimifan.luneziaitems.managers.PlayerManager;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -43,7 +45,7 @@ public class PlayersListener implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
+    public void onJoin(PlayerJoinEvent event) {
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
@@ -53,7 +55,7 @@ public class PlayersListener implements Listener {
     }
 
     @EventHandler
-    public void onLeave(PlayerQuitEvent event){
+    public void onLeave(PlayerQuitEvent event) {
         Bukkit.getScheduler().runTaskAsynchronously(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
@@ -73,23 +75,32 @@ public class PlayersListener implements Listener {
 
         if (luneziaItem instanceof Interactable) {
             ((Interactable) luneziaItem).onInteract(e);
-            return;
         }
 
-        System.out.println("Interact");
+        BlockItem clickedBlock = ItemManager.getInstance().get(e.getClickedBlock());
+
+        if (clickedBlock != null) {
+            clickedBlock.onInteract(e);
+        }
 
         if (luneziaItem instanceof BlockItem blockItem) {
             Location location = e.getClickedBlock().getLocation().add(e.getBlockFace().getModX(), e.getBlockFace().getModY(), e.getBlockFace().getModZ());
 
-            if (location.getBlock().getType() == Material.AIR) {
-                blockItem.onBlockPlace(e);
+            blockItem.onBlockPlace(e);
 
-                if (!e.isCancelled()) {
-                    e.setCancelled(true);
-                    location.getBlock().setType(blockItem.getBlockType());
-                    StorageManager.getInstance().register(location.getBlock(), blockItem.getTag());
-                    e.getPlayer().getInventory().removeItem(e.getItem());
-                    return;
+            if (!e.isCancelled()) {
+                e.setCancelled(true);
+
+                // TODO: check if there is an entity where the block is placed
+
+                location.getBlock().setType(blockItem.getBlockType());
+                StorageManager.getInstance().register(location.getBlock(), blockItem.getTag());
+                if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
+                    if (itemInHand.getAmount() == 1) {
+                        e.getPlayer().setItemInHand(new ItemStack(Material.AIR));
+                    } else {
+                        itemInHand.setAmount(itemInHand.getAmount() - 1);
+                    }
                 }
             }
         }

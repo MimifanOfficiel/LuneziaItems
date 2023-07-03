@@ -2,6 +2,7 @@ package fr.mimifan.luneziaitems.blocks;
 
 import fr.mimifan.luneziaitems.Main;
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,6 +11,8 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StorageManager {
 
@@ -44,7 +47,7 @@ public class StorageManager {
     public void register(Block block, String tag) {
         Chunk chunk = block.getChunk();
         String filename = chunk.getX() + "." + chunk.getZ() + ".data";
-        File file = new File(Main.getInstance().getDataFolder(),  tag + "/" + filename);
+        File file = new File(Main.getInstance().getDataFolder(),  "data/" + tag + "/" + chunk.getWorld().getName() + "/" + filename);
 
         JSONObject json;
         try {
@@ -68,7 +71,7 @@ public class StorageManager {
     public void unregister(Block block, String tag) {
         Chunk chunk = block.getChunk();
         String filename = chunk.getX() + "." + chunk.getZ() + ".data";
-        File file = new File(Main.getInstance().getDataFolder(),  tag + "/" + filename);
+        File file = new File(Main.getInstance().getDataFolder(),  "data/" + tag + "/" + chunk.getWorld().getName() + "/" + filename);
 
         JSONObject json;
         try {
@@ -92,7 +95,7 @@ public class StorageManager {
     public boolean has(Block block, String tag) {
         Chunk chunk = block.getChunk();
         String filename = chunk.getX() + "." + chunk.getZ() + ".data";
-        File file = new File(Main.getInstance().getDataFolder(),  tag + "/" + filename);
+        File file = new File(Main.getInstance().getDataFolder(),  "data/" + tag + "/" + chunk.getWorld().getName() + "/" + filename);
 
         JSONObject json;
         try {
@@ -105,10 +108,31 @@ public class StorageManager {
         return data.contains(block.getX() + "." + block.getY() + "." + block.getZ());
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Location> get(Chunk chunk, String tag) {
+        String filename = chunk.getX() + "." + chunk.getZ() + ".data";
+        File file = new File(Main.getInstance().getDataFolder(),  "data/" + tag + "/" + chunk.getWorld().getName() + "/" + filename);
+
+        JSONObject json;
+        try {
+            json = this.getJSON(file);
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        ArrayList<String> data = (ArrayList<String>) json.get("data");
+
+        return data.stream().map(s -> {
+            String[] split = s.split("\\.");
+            return new Location(chunk.getWorld(), Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+        }).collect(Collectors.toList());
+    }
+
 
     @SuppressWarnings("unchecked")
     private void createFile(File file) throws IOException {
-        file.mkdirs();
+        file.getParentFile().mkdirs();
+        file.createNewFile();
         JSONObject json = new JSONObject();
         json.put("data", new ArrayList<>());
         this.save(file, json);

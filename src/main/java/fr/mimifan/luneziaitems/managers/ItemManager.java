@@ -28,7 +28,6 @@ public class ItemManager {
 
     private final List<LuneziaItem> luneziaItemList = new ArrayList<>();
 
-
     public void load(){
         PluginManager pluginManager = Main.getInstance().getServer().getPluginManager();
 
