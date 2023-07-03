@@ -71,8 +71,6 @@ public class PlayersListener implements Listener {
         ItemStack itemInHand = e.getItem();
         LuneziaItem luneziaItem = ItemManager.getInstance().get(CraftItemStack.asNMSCopy(itemInHand));
 
-        if (luneziaItem == null) return;
-
         if (luneziaItem instanceof Interactable) {
             ((Interactable) luneziaItem).onInteract(e);
         }
