@@ -79,6 +79,8 @@ public class PlayersListener implements Listener {
             clickedBlock.onInteract(e);
         }
 
+        if (e.getClickedBlock() == null) return;
+
         if (luneziaItem instanceof BlockItem blockItem) {
             Location location = e.getClickedBlock().getLocation().add(e.getBlockFace().getModX(), e.getBlockFace().getModY(), e.getBlockFace().getModZ());
 

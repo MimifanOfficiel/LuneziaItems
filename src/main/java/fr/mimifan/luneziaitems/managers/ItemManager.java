@@ -110,7 +110,10 @@ public class ItemManager {
         return this.luneziaItemList.stream().filter(item -> item.getTag().equals(tag)).findFirst().orElse(null);
     }
 
-    public BlockItem get(Block block) {
+    @Nullable
+    public BlockItem get(@Nullable Block block) {
+        if (block == null) return null;
+
         for (LuneziaItem luneziaItem : this.luneziaItemList) {
             if (luneziaItem instanceof BlockItem blockItem) {
                 if (StorageManager.getInstance().has(block, blockItem.getTag())) {
