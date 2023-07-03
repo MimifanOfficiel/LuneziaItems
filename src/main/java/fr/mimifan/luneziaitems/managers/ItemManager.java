@@ -28,7 +28,7 @@ public class ItemManager {
 
     private final List<LuneziaItem> luneziaItemList = new ArrayList<>();
 
-    public void load(){
+    public void load() {
         PluginManager pluginManager = Main.getInstance().getServer().getPluginManager();
 
         pluginManager.registerEvents(new PlaceBlockListener(), Main.getInstance());
@@ -39,35 +39,38 @@ public class ItemManager {
 
         pluginManager.registerEvents(new InventoryClickListener(), Main.getInstance());
         pluginManager.registerEvents(new InventoryCloseListener(), Main.getInstance());
-
-        for (LuneziaItem luneziaItem : this.luneziaItemList) {
-            if (luneziaItem instanceof Craftable) {
-                Bukkit.addRecipe(((Craftable) luneziaItem).getLRecipe().getRecipe());
-            }
-        }
     }
 
-    public void unload(){
+    public void unload() {
+        this.unregister(this.luneziaItemList);
         this.luneziaItemList.clear();
     }
 
     public void register(List<LuneziaItem> items) {
-        this.luneziaItemList.addAll(items);
+        items.forEach(this::register);
     }
 
-    public void register(LuneziaItem item){
+    public void register(LuneziaItem item) {
         this.luneziaItemList.add(item);
+
+        if (item instanceof Craftable) {
+            Bukkit.addRecipe(((Craftable) item).getLRecipe().getRecipe());
+        }
     }
 
-    public void unregister(List<Item> items){
-        this.luneziaItemList.removeAll(items);
+    public void unregister(List<LuneziaItem> items) {
+        items.forEach(this::unregister);
     }
 
-    public void unregister(LuneziaItem item){
+    public void unregister(LuneziaItem item) {
         this.luneziaItemList.remove(item);
+
+        Bukkit.resetRecipes();
     }
 
-    public List<LuneziaItem> getLuneziaItemList(){ return this.luneziaItemList; }
+    public List<LuneziaItem> getLuneziaItemList() {
+        return this.luneziaItemList;
+    }
 
     @NotNull
     public LuneziaItem get(Class<?> itemClass) {
