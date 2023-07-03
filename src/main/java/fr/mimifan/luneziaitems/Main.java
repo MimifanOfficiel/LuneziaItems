@@ -53,12 +53,12 @@ public final class Main extends JavaPlugin {
         ItemManager.getInstance().unload();
 
         ItemManager.getInstance().register(List.of(
+                new NeutralFragment(),
+                new SolarFragment(),
                 new HydrusAxe(),
                 new HydrusHoe(),
                 new HydrusPickaxe(),
                 new HydrusShovel(),
-                new NeutralFragment(),
-                new SolarFragment(),
 
                 new LunaireHelmet(),
                 new LunaireChestplate(),

@@ -47,7 +47,8 @@ public class ItemManager {
     }
 
     public void register(List<LuneziaItem> items) {
-        items.forEach(this::register);
+        List<LuneziaItem> clone = new ArrayList<>(items);
+        clone.forEach(this::register);
     }
 
     public void register(LuneziaItem item) {
@@ -59,7 +60,8 @@ public class ItemManager {
     }
 
     public void unregister(List<LuneziaItem> items) {
-        items.forEach(this::unregister);
+        List<LuneziaItem> clone = new ArrayList<>(items);
+        clone.forEach(this::unregister);
     }
 
     public void unregister(LuneziaItem item) {
