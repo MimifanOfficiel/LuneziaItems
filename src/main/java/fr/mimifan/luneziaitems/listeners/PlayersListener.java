@@ -79,7 +79,7 @@ public class PlayersListener implements Listener {
             clickedBlock.onInteract(e);
         }
 
-        if (e.getClickedBlock() == null) return;
+        if (e.getClickedBlock() == null || !e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) return;
 
         if (luneziaItem instanceof BlockItem blockItem) {
             Location location = e.getClickedBlock().getLocation().add(e.getBlockFace().getModX(), e.getBlockFace().getModY(), e.getBlockFace().getModZ());
@@ -93,6 +93,7 @@ public class PlayersListener implements Listener {
 
                 location.getBlock().setType(blockItem.getBlockType());
                 StorageManager.getInstance().register(location.getBlock(), blockItem.getTag());
+
                 if (!e.getPlayer().getGameMode().equals(GameMode.CREATIVE)) {
                     if (itemInHand.getAmount() == 1) {
                         e.getPlayer().setItemInHand(new ItemStack(Material.AIR));
