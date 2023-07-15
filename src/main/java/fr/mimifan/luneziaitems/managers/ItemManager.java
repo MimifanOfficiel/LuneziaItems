@@ -1,16 +1,13 @@
 package fr.mimifan.luneziaitems.managers;
 
 import fr.mimifan.luneziaitems.Main;
-import fr.mimifan.luneziaitems.api.items.BlockItem;
 import fr.mimifan.luneziaitems.api.items.Craftable;
 import fr.mimifan.luneziaitems.api.items.LuneziaItem;
-import fr.mimifan.luneziaitems.blocks.StorageManager;
 import fr.mimifan.luneziaitems.listeners.*;
 import net.minecraft.server.v1_8_R3.Item;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
 import org.bukkit.Bukkit;
-import org.bukkit.block.Block;
 import org.bukkit.plugin.PluginManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -20,15 +17,14 @@ import java.util.List;
 
 public class ItemManager {
 
-    public static final String LUNEZIA_ITEM_TAG = "lunezia-item";
-
-    public static final String LUNEZIA_BLOCK_TAG = "lunezia-block";
+    public static final String LUNEZIA_TAG = "lunezia-item";
 
     private static final ItemManager instance = new ItemManager();
 
     private final List<LuneziaItem> luneziaItemList = new ArrayList<>();
 
-    public void load() {
+
+    public void load(){
         PluginManager pluginManager = Main.getInstance().getServer().getPluginManager();
 
         pluginManager.registerEvents(new PlaceBlockListener(), Main.getInstance());
@@ -39,40 +35,35 @@ public class ItemManager {
 
         pluginManager.registerEvents(new InventoryClickListener(), Main.getInstance());
         pluginManager.registerEvents(new InventoryCloseListener(), Main.getInstance());
+
+        for (LuneziaItem luneziaItem : this.luneziaItemList) {
+            if (luneziaItem instanceof Craftable) {
+                Bukkit.addRecipe(((Craftable) luneziaItem).getLRecipe().getRecipe());
+            }
+        }
     }
 
-    public void unload() {
-        this.unregister(this.luneziaItemList);
+    public void unload(){
         this.luneziaItemList.clear();
     }
 
     public void register(List<LuneziaItem> items) {
-        List<LuneziaItem> clone = new ArrayList<>(items);
-        clone.forEach(this::register);
+        this.luneziaItemList.addAll(items);
     }
 
-    public void register(LuneziaItem item) {
+    public void register(LuneziaItem item){
         this.luneziaItemList.add(item);
-
-        if (item instanceof Craftable) {
-            Bukkit.addRecipe(((Craftable) item).getLRecipe().getRecipe());
-        }
     }
 
-    public void unregister(List<LuneziaItem> items) {
-        List<LuneziaItem> clone = new ArrayList<>(items);
-        clone.forEach(this::unregister);
+    public void unregister(List<Item> items){
+        this.luneziaItemList.removeAll(items);
     }
 
-    public void unregister(LuneziaItem item) {
+    public void unregister(LuneziaItem item){
         this.luneziaItemList.remove(item);
-
-        Bukkit.resetRecipes();
     }
 
-    public List<LuneziaItem> getLuneziaItemList() {
-        return this.luneziaItemList;
-    }
+    public List<LuneziaItem> getLuneziaItemList(){ return this.luneziaItemList; }
 
     @NotNull
     public LuneziaItem get(Class<?> itemClass) {
@@ -91,7 +82,7 @@ public class ItemManager {
 
         if (base == null || base.isEmpty()) return null;
 
-        String name = base.getString(ItemManager.LUNEZIA_ITEM_TAG);
+        String name = base.getString(ItemManager.LUNEZIA_TAG);
 
         if (name == null || name.trim().isEmpty()) return null;
 
@@ -108,21 +99,6 @@ public class ItemManager {
     @Nullable
     public LuneziaItem get(String tag) {
         return this.luneziaItemList.stream().filter(item -> item.getTag().equals(tag)).findFirst().orElse(null);
-    }
-
-    @Nullable
-    public BlockItem get(@Nullable Block block) {
-        if (block == null) return null;
-
-        for (LuneziaItem luneziaItem : this.luneziaItemList) {
-            if (luneziaItem instanceof BlockItem blockItem) {
-                if (StorageManager.getInstance().has(block, blockItem.getTag())) {
-                    return blockItem;
-                }
-            }
-        }
-
-        return null;
     }
 
     public static ItemManager getInstance() {

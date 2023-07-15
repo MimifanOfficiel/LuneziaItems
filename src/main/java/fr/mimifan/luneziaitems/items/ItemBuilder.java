@@ -105,7 +105,7 @@ public class ItemBuilder {
             NBTTagCompound nbtTagCompound = nmsItem.getTag();
             if (nbtTagCompound == null) { nbtTagCompound = new NBTTagCompound(); }
 
-            nbtTagCompound.setString(ItemManager.LUNEZIA_ITEM_TAG, tag);
+            nbtTagCompound.setString(ItemManager.LUNEZIA_TAG, tag);
 
             nmsItem.setTag(nbtTagCompound);
 
