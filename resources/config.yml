@@ -1,0 +1,32 @@
+item-name-not-found: "&cNom introuvable - Vérifier le chemin"
+
+
+custom-items:
+  cant-here: "&7Cet item n'est pas autorisé ici."
+  neutral-fragment:
+    name: "&7Neutral Fragment"
+  solar-fragment:
+    name: "&6Solar Fragment"
+  tp_stick:
+    name: "&k&l&f!:! &5&lTeleportation &d&lGun &k&l&f!:!"
+    hide-enchants: true
+    lore:
+      - "&8Clic Droit au sol pour placer votre Base de TP"
+      - "&8Ensuite, Faite a nouveau Clic droit avec pour"
+      - "&8Vous y Re-TP sous 2 Minutes Maximum."
+      - " "
+      - "&e> Utilisations Restantes : 20/20"
+    cooldown: 120 #Seconds
+    point-placed: "&7Balise placée ! Cliquez à nouveau pour vous téléporter à cet emplacement."
+    point-removed: "&72 minutes sont passées. Votre balise de téléportation s'est effacé."
+    wait-before-moving: "&7Vous devez encore attendre %time% secondes avant de modifier l'emplacement de la balise."
+    no-point: "&7Aucune balise de téléportation."
+  loupe:
+    name: "&k&l&f!:! &5&lLoupe &k&l&f!:!"
+    hide-enchants: true
+    lore:
+      - "&8Clic Droit sur un coffre pour l'ouvrir discrètement."
+      - "&8Vous ne pouvez que visionner le contenu."
+      - "&8Ne fonctionne que dans les claims non alliés."
+      - " "
+      - "&e> Utilisations Restantes : 20/20"

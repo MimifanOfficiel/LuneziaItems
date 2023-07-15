@@ -1,0 +1,44 @@
+lunaire-helmet:
+  item: DIAMOND_HELMET
+  name: "&eCasque Lunaire"
+  hide-enchants: true
+  lore:
+    - " "
+    - " "
+  enchants:
+    PROTECTION_ENVIRONMENTAL: 4
+    DURABILITY: 4
+
+lunaire-chestplate:
+  item: DIAMOND_CHESTPLATE
+  name: "&ePlastron Lunaire"
+  hide-enchants: true
+  lore:
+    - " "
+    - " "
+  enchants:
+    PROTECTION_ENVIRONMENTAL: 4
+    DURABILITY: 4
+
+lunaire-leggings:
+  item: DIAMOND_LEGGINGS
+  name: "&eJambières Lunaires"
+  hide-enchants: true
+  lore:
+    - " "
+    - " "
+  enchants:
+    PROTECTION_ENVIRONMENTAL: 4
+    DURABILITY: 4
+
+lunaire-boots:
+  item: DIAMOND_BOOTS
+  name: "&eBottes Lunaires"
+  hide-enchants: true
+  lore:
+    - " "
+    - " "
+  enchants:
+    PROTECTION_ENVIRONMENTAL: 4
+    PROTECTION_FALL: 4
+    DURABILITY: 4
